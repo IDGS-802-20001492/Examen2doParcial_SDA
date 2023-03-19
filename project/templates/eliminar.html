@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="column is-4 is-offset-4">
+    <h3 class="title">Modifica el juego</h3>
+    <div class="box">
+         <form method="POST" action="{{ url_for('main.deleteG', id=game.id) }}" enctype="multipart/form-data">
+            <div class="field">
+                <div class="control">
+                    <input type="text" name="idJ" hidden value="{{game.id}}">                
+                    <input readonly class="input is-large" type="text" name="nameG" placeholder="Nombre del Videojuego" autofocus="" value="{{game.name}}">
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <input readonly class="input is-large" type="number" name="price" placeholder="Precio en MXN" autofocus="" value="{{game.price}}">
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <input readonly class="input is-large" type="text" name="gender" placeholder="Género" autofocus="" value="{{game.gender}}">
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <input readonly class="input is-large" type="text" name="platform" placeholder="Plataforma" autofocus="" value="{{game.platform}}">
+                </div>
+            </div>
+            <div class="field">
+                <div class="file">
+                    <img src="{{ url_for('static', filename='img/' + game.image) }}" width="100" height="100" style="opacity: 90%;">
+                    <input readonly class="input is-medium" type="file" name="image" placeholder="" autofocus="">
+                </div>
+            </div>
+            <button class="button is-block is-danger is-medium is-fullwidth" type="submit">Eliminar</button>
+            <a href="/ABCGames" class="button is-primary is-medium is-fullwidth">Cancelar</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

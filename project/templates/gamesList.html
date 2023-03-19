@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+    {%from "_macros.html" import render_field%}
+    <div class="container">
+        <a href="/addGame" class="button is-warning"><i class="fa-solid fa-file-circle-plus"></i> Agregar 
+        </a>
+            <h2 style="color:white" class="title has-text-left">Juegos disponibles</h2>
+            <table class="table is-striped is-bordered is-fullwidth">
+                <thead style="background-color: gray;">
+                    <th>Imagen</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Género</th>
+                    <th>Plataforma</th>
+                    <th>Eliminar</th>
+                    <th>Modificar</th>
+                </thead>
+                <tbody>
+                <tr>
+                    {%for ga in games%}
+                    <td><img src="{{ url_for('static', filename='img/' + ga[5]) }}" width="50" height="50" style="opacity: 90%;"></td>
+                    <td>{{ga[1]}}</td>
+                    <td>$ {{ga[2]}}</td>
+                    <td>{{ga[3]}}</td>
+                    <td>{{ga[4]}}</td>
+                    <td><a href="deleteG?id={{ga[0]}}" class="button is-danger" style="width: 60%;">
+                       <i class="delete"></i> Eliminar</a></td>
+                    <td><a href="updateG?id={{ga[0]}}" class="button is-success" style="width: 60%;">
+                        <i class="fa-regular fa-pen-to-square"></i>Modificar</a></td>
+                    
+                </tr>   
+                {%endfor%}   
+                </tbody>
+            </table>
+    </div>
+{% endblock %}

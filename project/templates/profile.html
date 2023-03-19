@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div id="notification" class="hidden">{{ notification_message }}</div>
+<h1 class="title">
+  ¡Buen día, {{ name }}!
+</h1>
+<h3 class="subtitle" style="color: aquamarine">¿Qué jugaremos hoy?</h3>
+{% endblock %}

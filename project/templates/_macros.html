@@ -1,0 +1,37 @@
+{% macro render_card(nombre,precio,genero,plataforma) %}
+<div class="column is-one-quarter">
+    <div class="card">
+        <div class="card-image">
+            <figure class="image is-4by3">
+                <img src="/static/img/videoG.jpg" width="200" height="300" style="opacity: 90%;">
+            </figure>
+        </div>
+        <div class="card-content">
+            <p class="title is-4" style="color: black;">{{nombre}}</p>
+            <p class="subtitle is-6" style="color: black;">{{precio}} MXN</p>
+            <p class="subtitle is-6" style="color: black;">Género: {{genero}}</p>
+            <p class="subtitle is-6" style="color: black;">Plataforma: {{plataforma}}</p>
+            <button class="button is-primary">Ordenar</button>
+        </div>
+    </div>
+</div>
+{%endmacro%}
+
+{% macro render_field(field)%}
+    <div class="control-group">
+        <div class="controls">
+            {{field.label}}
+            {{field(**kwargs)|safe}}
+        </div>
+    </div>
+        {%if field.errors%}
+        <ul>
+            {%for error in field.errors%}
+            <li style="color: red;">
+                {{error}}
+            </li>
+            {%endfor%}
+        </ul>
+        {%endif%}    
+{%endmacro%}
+

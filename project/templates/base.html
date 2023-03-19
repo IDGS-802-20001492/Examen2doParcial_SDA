@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Examen practico P2</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
+    <script src="https://kit.fontawesome.com/5d20bf9835.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <section class="hero has-background-info is-fullheight">
+
+        <div class="hero-head">
+            <nav class="navbar is-dark" style="background-color: darkslateblue;">
+                <div class="container">
+                    <div id="navbarMenuHeroA" class="navbar-menu">
+                        <div class="navbar-brand">
+                            <a class="navbar-item is-left" href="#">
+                                Compra Juega Inc. <i class="fa-solid fa-building"></i>
+                            </a>
+                        </div>
+                        <div class="navbar-end">
+                            <a href="{{ url_for('main.index') }}" class="navbar-item hoverable">
+                                Inicio
+                            </a>
+                            <a href="{{ url_for('main.contacto') }}" class="navbar-item">
+                                Contactanos
+                            </a>
+                            {% if current_user.is_authenticated %}
+                            <a href="{{ url_for('main.products') }}" class="navbar-item">
+                                Catálogo
+                            </a>
+                            {% endif %}
+                            
+                            {% if current_user.admin %}
+                            <li class="navbar-item has-dropdown is-hoverable">
+                                <a href="#" class="navbar-link">
+                                    Administrador
+                                </a>
+                                <ul class="navbar-dropdown">
+                                    <li>
+                                        <a href="{{ url_for('main.addGame') }}">Agregar Juego</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url_for('main.ABCGames') }}"">ABCompleto</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            {%endif%}
+                            
+                            {% if current_user.is_authenticated %}
+                            <a href="{{ url_for('main.profile') }}" class="navbar-item">
+                                Perfil de Usuario
+                            </a>
+                            {% endif %}
+                            {% if not current_user.is_authenticated %}
+                            <a href="{{ url_for('auth.login') }}" class="navbar-item">
+                                Login
+                            </a>
+                            <a href="{{ url_for('auth.register') }}" class="navbar-item">
+                                Registro
+                            </a>
+                            {% endif %}
+                            {% if current_user.is_authenticated %}
+                            <a href="{{ url_for('auth.logout') }}" class="navbar-item">
+                                Cerrar Sesión
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                </div>
+            </nav>
+        </div>
+
+        <div class="hero-body">
+            <div class="container has-text-centered">
+               {% block content %}
+               {% endblock %}
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
